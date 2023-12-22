@@ -1,0 +1,29 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <h1>Selected Phone</h1>
+    <h2>{{listings.title}}</h2>
+    <img src="{{ listings.imageURL }}"
+         alt=" {{ listings.title }}"
+         height="400px" />
+    <p>{{ listings.description }}</p>
+    <h3>Owner: {{ listings.owner }}</h3>
+    <h4>Initial Price: ${{ listings.price }}</h4>
+    {% comment %} {% if user.is_authenticated %}
+    <form action="{% url 'addbid' id=listings.id %}" method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="bid">Add bid</label>
+            <input type='number'
+                   name="newbid"
+                   id="bid"
+                   placeholder="Add new bid"
+                   min="0" />
+            <button type="submit">add to bid</button>
+            <p>{{ message }}</p>
+        </div>
+    </form>
+    {% endif %} {% endcomment %}
+
+    
+{% endblock %}
